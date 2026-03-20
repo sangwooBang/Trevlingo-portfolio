@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>학습하기 - TravelLingo</title>
+    <link rel="stylesheet" href="learning.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header with Progress -->
+    <header class="learning-header">
+        <div class="header-content">
+            <div class="course-info">
+                <h2 id="courseTitle">🇺🇸 영어 - Ch 1: 출국 및 기내</h2>
+                <p class="days-left-inline" id="daysLeftInline">(1일 남음)</p>
+                <p id="sessionTitle">Session 1: 예약 확인</p>
+            </div>
+            <div class="travel-countdown">
+                <div class="countdown-box">
+                    <span class="countdown-icon">✈️</span>
+                    <div>
+                        <div class="countdown-days">45일 남음</div>
+                        <div class="countdown-date">2026년 4월 26일 출발</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="progress-container">
+            <div class="progress-bar-learning">
+                <div class="progress-fill" id="sessionProgress" style="width: 0%"></div>
+            </div>
+            <div class="progress-stats">
+                <div class="level-progress">
+                    <span class="level-stat">레벨 1: <span id="level1Progress">0</span>%</span>
+                    <span class="level-stat">레벨 2: <span id="level2Progress">0</span>%</span>
+                    <span class="level-stat">레벨 3: <span id="level3Progress">0</span>%</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Buttons - Fixed below header -->
+    <div class="mobile-menu-buttons">
+        <button class="mobile-menu-btn" onclick="toggleSidebar()">
+            <span class="menu-icon">📚</span>
+            <span>목차</span>
+        </button>
+        <button class="mobile-menu-btn" onclick="toggleModeSelection()">
+            <span class="menu-icon">⚙️</span>
+            <span>학습 방법</span>
+        </button>
+    </div>
+
+    <div class="learning-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" id="sidebar">
+            <button class="close-sidebar" onclick="toggleSidebar()">✕</button>
+            
+            <div class="chapter-nav">
+                <h3>📚 학습 방법 선택</h3>
+                
+                <div class="mode-selection" id="modeSelection">
+                    <button class="mode-select-btn active" data-mode="auto" onclick="setLearningMode('auto')">
+                        <span class="mode-icon">🚀</span>
+                        <span>자동 학습 (추천)</span>
+                    </button>
+                    <button class="mode-select-btn" data-mode="vocabulary" onclick="setLearningMode('vocabulary')">
+                        <span class="mode-icon">📝</span>
+                        <span>A. 단어 학습</span>
+                    </button>
+                    <button class="mode-select-btn" data-mode="expressions" onclick="setLearningMode('expressions')">
+                        <span class="mode-icon">💬</span>
+                        <span>B. 표현 & 문답</span>
+                    </button>
+                    <button class="mode-select-btn" data-mode="ai-conversation" onclick="setLearningMode('ai-conversation')">
+                        <span class="mode-icon">🤖</span>
+                        <span>C. AI 대화</span>
+                    </button>
+                </div>
+
+                <hr style="margin: 20px 0; border: none; border-top: 1px solid #e5e7eb;">
+
+                <h3>📚 학습 목차</h3>
+                <div class="chapter-item active">
+                    <div class="chapter-header">
+                        <span class="chapter-icon">✈️</span>
+                        <span>Ch 1: 출국 및 기내</span>
+                    </div>
+                    <div class="session-list">
+                        <div class="session-item active" data-session="1">
+                            <span class="check">▶</span> Session 1: 예약 확인
+                        </div>
+                        <div class="session-item" data-session="2">
+                            <span class="check">○</span> Session 2: 체크인
+                        </div>
+                        <div class="session-item" data-session="3">
+                            <span class="check">○</span> Session 3: 수하물
+                        </div>
+                        <div class="session-item" data-session="4">
+                            <span class="check">○</span> Session 4: 보안검색
+                        </div>
+                        <div class="session-item" data-session="5">
+                            <span class="check">○</span> Session 5: 면세점
+                        </div>
+                        <div class="session-item" data-session="6">
+                            <span class="check">○</span> Session 6: 탑승
+                        </div>
+                        <div class="session-item" data-session="7">
+                            <span class="check">○</span> Session 7: 기내식
+                        </div>
+                        <div class="session-item" data-session="8">
+                            <span class="check">○</span> Session 8: 좌석 조절
+                        </div>
+                        <div class="session-item" data-session="9">
+                            <span class="check">○</span> Session 9: 기내 면세
+                        </div>
+                        <div class="session-item" data-session="10">
+                            <span class="check">○</span> Session 10: 입국서류
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Learning Area -->
+        <main class="learning-main">
+            <!-- Video Section - Initial Screen -->
+            <section class="video-section" id="initialScreen">
+                <div class="session-intro">
+                    <h2 class="session-intro-title">Session 1: 예약 확인</h2>
+                    <p class="session-intro-desc">공항에서 예약을 확인하는 필수 표현을 배워봅시다</p>
+                </div>
+
+                <div class="video-container">
+                    <div class="video-player" id="videoPlayer">
+                        <video id="sessionVideo" controls style="display: none;">
+                            <source src="session1-video.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-placeholder" id="videoPlaceholder">
+                            <div class="play-button-large" onclick="playVideo()">▶</div>
+                            <p class="video-title">학습 영상 보기</p>
+                            <p class="video-duration">⏱️ 3분 30초</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-info">
+                    <h3>📹 이번 세션에서 배울 내용</h3>
+                    <ul>
+                        <li>✓ 예약 관련 필수 단어 3개</li>
+                        <li>✓ 예약 확인 표현 3개</li>
+                        <li>✓ 실전 대화 연습</li>
+                    </ul>
+                </div>
+
+                <!-- Cultural Tip -->
+                <div class="culture-tip">
+                    <div class="tip-icon">💡</div>
+                    <div class="tip-content">
+                        <h4>문화 팁</h4>
+                        <p>예약 확인 시 PNR(예약번호)을 항상 준비하세요. 미국·유럽 항공사는 전화보다 앱·웹 셀프 체크인을 선호합니다.</p>
+                    </div>
+                </div>
+
+                <div class="video-actions">
+                    <button class="btn-start-learning" onclick="startLearning()">학습 시작하기 🚀</button>
+                </div>
+            </section>
+
+            <!-- A. Vocabulary Learning -->
+            <div class="learning-mode" id="vocabulary-mode" style="display: none;">
+                <div class="mode-header">
+                    <h3>A. 단어 학습</h3>
+                    <div class="mode-progress"><span id="vocabProgress">1</span>/<span id="vocabTotal">3</span> 단어</div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="flashcard clickable" id="flashcard1" onclick="flipCard()">
+                        <div class="flashcard-inner">
+                            <div class="flashcard-front">
+                                <div class="word-korean" id="wordKorean">예약</div>
+                                <button class="tts-button" onclick="event.stopPropagation(); speakCurrentWord()">🔊</button>
+                            </div>
+                            <div class="flashcard-back">
+                                <img class="vocab-image" id="vocabImage" src="" alt="vocabulary image" style="display: none;">
+                                <div class="word-english" id="wordEnglish">reservation</div>
+                                <button class="tts-button tts-word" onclick="event.stopPropagation(); speakCurrentWord()">🔊</button>
+                                <div class="word-example">
+                                    <p class="example-en" id="exampleEn">
+                                        I made a reservation for two.
+                                        <button class="tts-inline" onclick="event.stopPropagation(); speakCurrentExample()">🔊</button>
+                                    </p>
+                                    <p class="example-ko" id="exampleKo">두 명으로 예약했습니다.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Voice Recording Comparison - Moved outside flashcard -->
+                    <div class="voice-comparison">
+                        <div class="recording-section">
+                            <button class="btn-record" id="btnRecord" onclick="toggleRecording()">
+                                <span class="record-icon">🎤</span>
+                                <span class="record-text">내 발음 녹음하기</span>
+                            </button>
+                            <button class="btn-play-recording" id="btnPlayRecording" onclick="playUserRecording()" style="display: none;">
+                                <span>🔊 내 발음 듣기</span>
+                            </button>
+                        </div>
+                        <div class="comparison-buttons" id="comparisonButtons" style="display: none;">
+                            <button class="btn-compare" onclick="compareVoices()">
+                                <span>🔄 원어민과 비교</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="card-navigation">
+                        <button class="btn-prev" id="btnPrevVocab" onclick="prevVocab()" disabled>← 이전</button>
+                        <button class="btn-next" id="btnNextVocab" onclick="nextVocab()">다음 →</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- B. Expressions & Q&A -->
+            <div class="learning-mode" id="expressions-mode" style="display: none;">
+                <div class="mode-header">
+                    <h3>B. 표현 & 문답 학습</h3>
+                    <div class="mode-progress"><span id="exprProgress">1</span>/<span id="exprTotal">3</span> 표현</div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="sentence-quiz">
+                        <div class="sentence-both">
+                            <p class="sentence-ko" id="sentenceKo">"두 명으로 예약했습니다"</p>
+                            <p class="sentence-en" id="sentenceEn">
+                                I made a reservation for two.
+                                <button class="tts-inline" onclick="speakCurrentExpression()">🔊</button>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="card-navigation">
+                        <button class="btn-prev" id="btnPrevExpr" onclick="prevExpr()" disabled>← 이전</button>
+                        <button class="btn-next" id="btnNextExpr" onclick="nextExpr()">다음 →</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- C. AI Conversation -->
+            <div class="learning-mode" id="ai-conversation-mode" style="display: none;">
+                <div class="mode-header">
+                    <h3>C. AI 대화 연습</h3>
+                </div>
+
+                <div class="ai-chat-container">
+                    <div class="ai-scenario">
+                        <h4>🎭 상황: 공항 체크인 카운터</h4>
+                        <p>당신은 공항에서 체크인을 하려고 합니다. AI 직원과 대화해보세요.</p>
+                    </div>
+
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="message ai-message">
+                            <div class="message-avatar">🤖</div>
+                            <div class="message-content">
+                                <p>
+                                    Hello! Do you have a reservation?
+                                    <button class="tts-inline" onclick="speakSentence('Hello! Do you have a reservation?')">🔊</button>
+                                </p>
+                                <p class="message-translation">안녕하세요! 예약하셨나요?</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chat-input-area">
+                        <div class="suggested-responses">
+                            <p class="suggest-label">💡 추천 답변:</p>
+                            <button class="suggest-btn" onclick="useSuggestion(this)">Yes, I made a reservation for two.</button>
+                        </div>
+                        <div class="chat-input">
+                            <input type="text" placeholder="답변을 입력하세요..." id="chatInput">
+                            <button class="send-button" onclick="sendMessage()">전송</button>
+                        </div>
+                        
+                        <!-- User Feedback Area -->
+                        <div class="user-feedback" id="userFeedback" style="display: none;">
+                            <div class="feedback-header">
+                                <span class="feedback-icon">✨</span>
+                                <strong>피드백</strong>
+                            </div>
+                            <div class="feedback-text" id="feedbackText"></div>
+                            <div class="feedback-suggestion" id="feedbackSuggestion">
+                                <strong>더 나은 표현:</strong>
+                                <p class="suggestion-text">
+                                    "Yes, I have a reservation for two people."
+                                    <button class="tts-inline" onclick="speakSentence('Yes, I have a reservation for two people')">🔊</button>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn-next-exercise" onclick="completeSession()">세션 완료 →</button>
+            </div>
+
+            <!-- Session Completion Screen -->
+            <div class="session-completion" id="sessionCompletion" style="display: none;">
+                <div class="completion-card">
+                    <div class="completion-icon">🎉</div>
+                    <h2 class="completion-title">Session 1 완료!</h2>
+                    <p class="completion-subtitle">예약 확인 학습을 완료했습니다</p>
+                    
+                    <div class="completion-stats">
+                        <div class="stat-item">
+                            <div class="stat-icon">📝</div>
+                            <div class="stat-label">학습한 단어</div>
+                            <div class="stat-value">10개</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon">💬</div>
+                            <div class="stat-label">학습한 표현</div>
+                            <div class="stat-value">5개</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon">🤖</div>
+                            <div class="stat-label">AI 대화</div>
+                            <div class="stat-value">완료</div>
+                        </div>
+                    </div>
+
+                    <div class="next-session-preview">
+                        <h3>다음 세션</h3>
+                        <div class="next-session-card">
+                            <span class="next-icon">✈️</span>
+                            <div class="next-info">
+                                <div class="next-title">Session 2: 체크인</div>
+                                <div class="next-desc">공항 체크인 필수 표현 학습</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="completion-actions">
+                        <button class="btn-review-session" onclick="reviewSession()">복습하기</button>
+                        <button class="btn-next-session-main" onclick="goToNextSession()">다음 세션 시작 →</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Sidebar Overlay for Mobile -->
+    <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+    <script src="learning.js"></script>
+</body>
+</html>

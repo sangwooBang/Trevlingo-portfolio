@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인 - TravelLingo</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .login-box {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .login-logo {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .login-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2C3E50;
+            margin-bottom: 10px;
+        }
+
+        .login-subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2C3E50;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #7f8c8d;
+        }
+
+        .login-footer a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-home {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .back-home a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <div class="login-logo">✈️</div>
+            <h1 class="login-title">TravelLingo</h1>
+            <p class="login-subtitle">여행을 위한 언어 학습</p>
+
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="email">이메일</label>
+                    <input type="email" id="email" placeholder="your@email.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">비밀번호</label>
+                    <input type="password" id="password" placeholder="비밀번호를 입력하세요" required>
+                </div>
+
+                <button type="submit" class="btn-login">로그인</button>
+            </form>
+
+            <div class="login-footer">
+                계정이 없으신가요? <a href="signup.html">회원가입</a>
+            </div>
+
+            <div class="back-home">
+                <a href="index.html">← 홈으로 돌아가기</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ── API 서버 주소 (백엔드 Spring Boot) ──
+        const API_BASE = 'http://localhost:8080/api';
+
+        function handleLogin(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // 간단한 데모 로그인 (실제로는 서버 인증 필요)
+            if (email && password) {
+                // 로그인 정보 저장
+                localStorage.setItem('userEmail', email);
+                localStorage.setItem('isLoggedIn', 'true');
+
+                // TODO [백엔드 연동] ─────────────────────────────────
+                // 백엔드 완성 후 아래 코드를 위 localStorage 부분 대신 사용하세요
+                //
+                // try {
+                //     const res = await fetch(`${API_BASE}/auth/login`, {
+                //         method: 'POST',
+                //         headers: { 'Content-Type': 'application/json' },
+                //         body: JSON.stringify({ email, password })
+                //     });
+                //     const data = await res.json();
+                //     if (res.ok) {
+                //         localStorage.setItem('userId', data.userId);
+                //         localStorage.setItem('userEmail', data.email);
+                //         localStorage.setItem('nickname', data.nickname);
+                //         localStorage.setItem('isLoggedIn', 'true');
+                //         window.location.href = 'travel-setup.html';
+                //     } else {
+                //         alert(data.error || '로그인 실패');
+                //     }
+                // } catch (e) {
+                //     console.error('백엔드 연결 실패:', e);
+                //     alert('서버에 연결할 수 없습니다. 백엔드가 실행 중인지 확인하세요.');
+                // }
+                // ──────────────────────────────────────────────────
+
+                // 여행 설정 페이지로 이동
+                window.location.href = 'travel-setup.html';
+            } else {
+                alert('이메일과 비밀번호를 입력해주세요.');
+            }
+        }
+    </script>
+</body>
+</html>
