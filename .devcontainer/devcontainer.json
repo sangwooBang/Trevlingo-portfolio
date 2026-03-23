@@ -1,0 +1,39 @@
+{
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  
+  "features": {
+    // 1. Python 최신 버전 설치
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "latest"
+    },
+    // 2. Java (JDK 21 기준, 필요시 버전 변경) 설치
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "21",
+      "jdkDistro": "ms"
+    }
+  },
+
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "java.format.settings.url": "eclipse-formatter.xml"
+      },
+      "extensions": [
+        // --- Python ---
+        "ms-python.python",               // 파이썬 기본 지원
+        "ms-python.vscode-pylance",       // 더 빠른 자동완성 및 문법 체크
+        
+        // --- Java ---
+        "vscjava.vscode-java-pack",       // 자바 개발 필수 패키지 (Maven, Gradle 등 포함)
+        
+        // --- Spring Boot ---
+        "vmware.vscode-boot-dev-pack",    // 스프링 부트 확장 패키지
+        "vscjava.vscode-spring-initializr",// 스프링 프로젝트 생성기
+        
+        // --- MySQL (DB 클라이언트) ---
+        "mtxr.sqltools",                  // VS Code용 DB 관리 툴 (SQLTools)
+        "mtxr.sqltools-driver-mysql"      // SQLTools용 MySQL 드라이버
+      ]
+    }
+  }
+}
