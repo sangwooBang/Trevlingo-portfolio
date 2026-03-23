@@ -21,6 +21,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/trips")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class TripController {
 
     private final TripRepository tripRepository;
