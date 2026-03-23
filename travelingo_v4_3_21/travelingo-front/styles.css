@@ -117,6 +117,8 @@ body {
     text-decoration: none;
     transition: all 0.3s;
     box-shadow: 0 10px 30px rgba(255, 230, 109, 0.4);
+    border: none;
+    outline: none;
 }
 
 .btn-hero:hover {

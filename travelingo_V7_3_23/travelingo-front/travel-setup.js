@@ -208,9 +208,9 @@ function nextStep() {
     const daysUntilTravel = Math.ceil((arrivalDate - today) / (1000 * 60 * 60 * 24));
 
     // 남은 일수를 카운트다운에 표시
-    if (step3에 진입하면) {
+   
         document.getElementById('daysUntilTravel').textContent = Math.max(0, daysUntilTravel);
-    }
+    
 }
 
 /**
