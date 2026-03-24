@@ -24,7 +24,7 @@
         <div class="hero-content">
             <h1 class="hero-title">여행 전에 언어를 마스터하세요</h1>
             <p class="hero-subtitle">다음 여행을 위해 필요한 언어를 배우세요. 여행 날짜와 목적지에 맞춘 맞춤형 학습 플랜을 제공합니다.</p>
-            <a href="travel-setup.html" class="btn-hero">학습 시작하기 🚀</a>
+            <button onclick="checkLogin()" class="btn-hero">학습 시작하기 🚀</button> 
             
             <div class="hero-stats">
                 <div class="stat-item">
@@ -134,5 +134,22 @@
     </footer>
 
     <!-- script.js removed: file does not exist -->
+
+    <script>
+        function checkLogin() {
+            console.log("로그인 체크 실행");
+
+            const userId = localStorage.getItem('userId');
+
+            if (userId) {
+                window.location.href = 'travel-setup.html';
+            } else {
+                alert("로그인이 필요합니다.");
+                window.location.href = 'login.html';
+            }
+
+            
+        }
+    </script>
 </body>
 </html>
