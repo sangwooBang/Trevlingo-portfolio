@@ -75,7 +75,6 @@ body {
 }
 
 .btn-nav {
-    background: white;
     color: var(--primary);
     padding: 10px 25px;
     border-radius: 25px;
