@@ -41,3 +41,12 @@ entity : 데이터 구조 정의
 
 ## 📸 주요 화면
 ![메인](./images/main.png)
+![메인](./images/signup.png)
+![메인](./images/login.png)
+![메인](./images/travel.png)
+![메인](./images/learning.png)
+![메인](./images/ham.png)
+![메인](./images/TTS.png)
+![메인](./images/word.png)
+![메인](./images/AI.png)
+![메인](./images/clear.png)
